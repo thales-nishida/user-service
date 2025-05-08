@@ -1,15 +1,19 @@
 package br.com.thalesnishida.user;
 
-public class User {
+import br.com.thalesnishida.AggregateRoot;
+
+public class User extends AggregateRoot<UserId> {
     private String name;
     private String email;
     private String password;
 
     private User(
+            final UserId anId,
             final String aName,
             final String aEmail,
             final String aPassword
     ) {
+        super(anId);
         this.name = aName;
         this.email = aEmail;
         this.password = aPassword;
