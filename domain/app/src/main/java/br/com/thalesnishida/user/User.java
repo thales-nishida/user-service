@@ -24,8 +24,26 @@ public class User extends AggregateRoot<UserId> {
             final String aEmail,
             final String aPassword
     ) {
-        return new User(aName, aEmail, aPassword);
+        final var id = UserId.unique();
+        return new User(id, aName, aEmail, aPassword);
     }
+
+    public UserId getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
     
 }
 

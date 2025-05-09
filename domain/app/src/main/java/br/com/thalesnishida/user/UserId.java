@@ -1,6 +1,6 @@
 package br.com.thalesnishida.user;
 
-import br.com.thalesnishida.user.Identifier;
+import br.com.thalesnishida.Identifier;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -30,11 +30,11 @@ public class UserId extends Identifier {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserId userId = (UserId) o;
-        return Objects.equals(value, UserId.value);
+        return Objects.equals(value, userId.value);
     }
 
     @Override
     public int hashCode() {
-        return Ojects.has(value);
+        return Objects.hash(value);
     }
 }
