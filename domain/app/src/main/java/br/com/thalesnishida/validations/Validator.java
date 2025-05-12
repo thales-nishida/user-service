@@ -1,4 +1,4 @@
-package br.com.thalesnishida.validation;
+package br.com.thalesnishida.validations;
 
 abstract public class Validator {
     private final ValidationHandler handler;

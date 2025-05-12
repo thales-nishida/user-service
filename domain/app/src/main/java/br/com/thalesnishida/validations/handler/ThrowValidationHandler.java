@@ -1,8 +1,8 @@
-package br.com.thalesnishida.validation.handler;
+package br.com.thalesnishida.validations.handler;
 
-import br.com.thalesnishida.exception.DomainExecption;
-import br.com.thalesnishida.validation.ValidationHandler;
-import br.com.thalesnishida.validation.Error;
+import br.com.thalesnishida.exceptions.DomainException;
+import br.com.thalesnishida.validations.ValidationHandler;
+import br.com.thalesnishida.validations.Error;
 
 import java.util.List;
 
@@ -24,6 +24,7 @@ public class ThrowValidationHandler implements ValidationHandler {
         } catch (final Exception ex) {
             throw DomainException.with(new Error(ex.getMessage()));
         }
+        return this;
     }
 
     @Override

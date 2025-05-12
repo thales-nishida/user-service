@@ -1,6 +1,7 @@
 package br.com.thalesnishida.user;
 
 import br.com.thalesnishida.AggregateRoot;
+import br.com.thalesnishida.validations.ValidationHandler;
 
 public class User extends AggregateRoot<UserId> {
     private String name;
@@ -44,6 +45,9 @@ public class User extends AggregateRoot<UserId> {
         return password;
     }
 
-    
+    @Override
+    public void validate(final ValidationHandler handler) {
+        new UserValidator(this, handler).validate();
+    } 
 }
 

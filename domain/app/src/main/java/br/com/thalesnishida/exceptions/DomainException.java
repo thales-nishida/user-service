@@ -1,6 +1,7 @@
 package br.com.thalesnishida.exceptions;
 
 import java.util.List;
+import br.com.thalesnishida.validations.Error;
 
 public class DomainException extends NoStackTraceException {
     

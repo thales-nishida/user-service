@@ -1,6 +1,7 @@
 package br.com.thalesnishida;
 
 import java.util.Objects;
+import br.com.thalesnishida.validations.ValidationHandler;
 
 abstract public class Entity<ID extends Identifier> {
     protected final ID id;
@@ -14,6 +15,7 @@ abstract public class Entity<ID extends Identifier> {
         return id;
     }
 
+    public abstract void validate(ValidationHandler handler);
 
     @Override
     public boolean equals(Object o) {

@@ -1,4 +1,4 @@
-package br.com.thalesnishida.validation;
+package br.com.thalesnishida.validations;
 
 import java.util.List;
 

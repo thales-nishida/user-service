@@ -2,6 +2,8 @@ package br.com.thalesnishida.user;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
+import br.com.thalesnishida.exceptions.DomainException;
+import br.com.thalesnishida.validations.handler.ThrowValidationHandler;
 
 class UserTest {
 
@@ -24,14 +26,14 @@ class UserTest {
     public void givenAInvalidParamsNullName_whenCallNewUser_thenShouldReturnADomainException() {
         final String expectedName = null;
         final var expectedEmail = "test@test.com";
-        final var expecedtPassword = "test123";
-        final var expecedErrorMessage = "'name' should be not null";
+        final var expectedPassword = "test123";
+        final var expectedErrorMessage = "'name' should be not null";
 
-        final var actualUser = User.newUser(expectedName, expecedtEmail, expectedPassword);
+        final var actualUser = User.newUser(expectedName, expectedEmail, expectedPassword);
 
         final var actualException = 
             Assertions.assertThrows(DomainException.class, () -> actualUser.validate(new ThrowValidationHandler()));
 
-        Assertions.assertEquals(expectedErrorMessage, actualException.getError().get(0).message());
+        Assertions.assertEquals(expectedErrorMessage, actualException.getErrors().get(0).message());
     }
 }
