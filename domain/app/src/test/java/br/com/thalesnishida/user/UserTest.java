@@ -20,6 +20,8 @@ class UserTest {
         Assertions.assertEquals(expectedName, actualUser.getName());
         Assertions.assertEquals(expectedEmail, actualUser.getEmail());
         Assertions.assertEquals(expectedPassword, actualUser.getPassword());
+        Assertions.assertNotNull(actualUser.getCreatedAt());
+        Assertions.assertNotNull(actualUser.getUpdatedAt());
     }
 
     @Test
@@ -245,5 +247,34 @@ class UserTest {
 
         Assertions.assertEquals(expectedErrorMessage, actualException.getErrors().get(0).message());
         Assertions.assertEquals(expectedErrorCount, actualException.getErrors().size());
+    }
+    
+    @Test
+    public void givenAValidParams_whenCallUserUpdate_thenShouldUpdateUser() {
+        final var name = "Test";
+        final var email = "test@test.com.br";
+        final var password = "D0&*test123";
+
+        final var aUser = User.newUser(name, email, password);
+        final var createdAt = aUser.getCreatedAt();
+        final var updatedAt = aUser.getUpdatedAt();
+
+        Assertions.assertDoesNotThrow(() -> aUser.validate(new ThrowValidationHandler()));
+
+        final var expectedName = "Test Update";
+        final var expectedEmail = "test@update.com.br";
+        final var expectedPassword = "D&*3e@upPd3";
+
+        final var actualUser = aUser.update(expectedName, expectedEmail, expectedPassword);
+
+        Assertions.assertDoesNotThrow(() -> actualUser.validate(new ThrowValidationHandler()));
+
+        Assertions.assertNotNull(actualUser);
+        Assertions.assertEquals(aUser.getId(), actualUser.getId());
+        Assertions.assertEquals(expectedName, actualUser.getName());
+        Assertions.assertEquals(expectedEmail, actualUser.getEmail());
+        Assertions.assertEquals(expectedPassword, actualUser.getPassword());
+        Assertions.assertEquals(createdAt, actualUser.getCreatedAt());
+        Assertions.assertTrue(actualUser.getUpdatedAt().isAfter(updatedAt));
     }
 }
