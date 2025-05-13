@@ -166,7 +166,7 @@ class UserTest {
     public void givenAInvalidParamPasswordLess8Length_whenCallNewUser_thenShouldReturnADomainException() {
         final var expectedName = "Teste";
         final var expectedEmail = "teste@teste.com";
-        final var expectedPassword = "920@0";
+        final var expectedPassword = "0";
         final var expectedErrorMessage = "'password' should be contains at least 8 characters and at most 20 characters";
         final var expectedErrorCount = 1;
 
@@ -184,7 +184,7 @@ class UserTest {
         final var expectedName = "Teste";
         final var expectedEmail = "teste@teste.com";
         final var expectedPassword = "nodigitpass";
-        final var expectedErrorMessage = "'password' should be contains at least one digit";
+        final var expectedErrorMessage = "'password' should be contains at least one digit, uppercase, lowercase, special character";
         final var expectedErrorCount = 1;
 
         final var actualUser = User.newUser(expectedName, expectedEmail, expectedPassword);
@@ -201,7 +201,7 @@ class UserTest {
         final var expectedName = "Teste";
         final var expectedEmail = "teste@teste.com";
         final var expectedPassword = "nodig2itpass";
-        final var expectedErrorMessage = "'password' should be contains at least one uppercase alphabet";
+        final var expectedErrorMessage = "'password' should be contains at least one digit, uppercase, lowercase, special character";
         final var expectedErrorCount = 1;
 
         final var actualUser = User.newUser(expectedName, expectedEmail, expectedPassword);
@@ -218,7 +218,7 @@ class UserTest {
         final var expectedName = "Teste";
         final var expectedEmail = "teste@teste.com";
         final var expectedPassword = "TEST1T@TEST";
-        final var expectedErrorMessage = "'password' should be contains at least one lowercase alphabet";
+        final var expectedErrorMessage = "'password' should be contains at least one digit, uppercase, lowercase, special character";
         final var expectedErrorCount = 1;
 
         final var actualUser = User.newUser(expectedName, expectedEmail, expectedPassword);
@@ -235,7 +235,7 @@ class UserTest {
         final var expectedName = "Teste";
         final var expectedEmail = "teste@teste.com";
         final var expectedPassword = "TEST1TEST";
-        final var expectedErrorMessage = "'password' should be contains at least one lowercase alphabet";
+        final var expectedErrorMessage = "'password' should be contains at least one digit, uppercase, lowercase, special character";
         final var expectedErrorCount = 1;
 
         final var actualUser = User.newUser(expectedName, expectedEmail, expectedPassword);

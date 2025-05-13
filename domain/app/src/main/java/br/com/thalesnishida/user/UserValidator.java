@@ -21,6 +21,7 @@ public class UserValidator extends Validator {
     public void validate() {
         checkName();
         checkEmail();  
+        checkPassword();
     }
 
     private void checkName() {
@@ -62,5 +63,25 @@ public class UserValidator extends Validator {
         }
         
     }  
+
+    private void checkPassword() {
+        final var password = this.user.getPassword();
+        final var regexPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8,20}$";
+
+        if(password == null) {
+            this.validationHandler().append(new Error("'password' should be not null"));
+            return;
+        }
+
+        if(password.length() < 2 || password.length() > 20) {
+            this.validationHandler().append(new Error("'password' should be contains at least 8 characters and at most 20 characters"));
+            return;
+        }
+
+        if(Pattern.compile(regexPattern).matcher(password).find() == false) {
+            this.validationHandler().append(new Error("'password' should be contains at least one digit, uppercase, lowercase, special character"));
+            return;
+        }
+    }
 
 }
