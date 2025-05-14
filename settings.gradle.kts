@@ -11,4 +11,6 @@ plugins {
 }
 
 rootProject.name = "user-service"
-include("app")
+include("domain")
+include("application")
+include("infrastructure")
