@@ -1,4 +1,4 @@
-package br.com.thalesnishida.validations;
+package br.com.thalesnishida.user.service.domain.validations;
 
 abstract public class Validator {
     private final ValidationHandler handler;

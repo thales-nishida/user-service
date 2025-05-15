@@ -1,9 +1,9 @@
-package br.com.thalesnishida.user;
+package br.com.thalesnishida.user.service.domain.user;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
-import br.com.thalesnishida.exceptions.DomainException;
-import br.com.thalesnishida.validations.handler.ThrowValidationHandler;
+import br.com.thalesnishida.user.service.domain.exceptions.DomainException;
+import br.com.thalesnishida.user.service.domain.validations.handler.ThrowValidationHandler;
 
 class UserTest {
 

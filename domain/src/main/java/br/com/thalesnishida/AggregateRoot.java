@@ -1,6 +1,6 @@
-package br.com.thalesnishida;
+package br.com.thalesnishida.user.service.domain;
 
-import br.com.thalesnishida.validations.ValidationHandler;
+import br.com.thalesnishida.user.service.domain.validations.ValidationHandler;
 
 public class AggregateRoot<ID extends Identifier> extends Entity<ID> {
 

@@ -1,8 +1,8 @@
-package br.com.thalesnishida.validations.handler;
+package br.com.thalesnishida.user.service.domain.validations.handler;
 
-import br.com.thalesnishida.exceptions.DomainException;
-import br.com.thalesnishida.validations.ValidationHandler;
-import br.com.thalesnishida.validations.Error;
+import br.com.thalesnishida.user.service.domain.exceptions.DomainException;
+import br.com.thalesnishida.user.service.domain.validations.ValidationHandler;
+import br.com.thalesnishida.user.service.domain.validations.Error;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package br.com.thalesnishida.user.service.domain.user;
 
-import br.com.thalesnishida.AggregateRoot;
-import br.com.thalesnishida.validations.ValidationHandler;
+import br.com.thalesnishida.user.service.domain.AggregateRoot;
+import br.com.thalesnishida.user.service.domain.validations.ValidationHandler;
 
 import java.time.Instant;
 

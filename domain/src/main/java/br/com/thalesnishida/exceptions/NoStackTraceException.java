@@ -1,4 +1,4 @@
-package br.com.thalesnishida.exceptions;
+package br.com.thalesnishida.user.service.domain.exceptions;
 
 public class NoStackTraceException extends RuntimeException {
 

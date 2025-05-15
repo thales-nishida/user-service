@@ -1,6 +1,6 @@
 package br.com.thalesnishida.user.service.domain.user;
 
-import br.com.thalesnishida.Identifier;
+import br.com.thalesnishida.user.service.domain.Identifier;
 import java.util.Objects;
 import java.util.UUID;
 

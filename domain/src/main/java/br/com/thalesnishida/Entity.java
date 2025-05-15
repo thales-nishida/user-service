@@ -1,7 +1,7 @@
-package br.com.thalesnishida;
+package br.com.thalesnishida.user.service.domain;
 
 import java.util.Objects;
-import br.com.thalesnishida.validations.ValidationHandler;
+import br.com.thalesnishida.user.service.domain.validations.ValidationHandler;
 
 abstract public class Entity<ID extends Identifier> {
     protected final ID id;

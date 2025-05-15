@@ -1,7 +1,7 @@
-package br.com.thalesnishida.exceptions;
+package br.com.thalesnishida.user.service.domain.exceptions;
 
 import java.util.List;
-import br.com.thalesnishida.validations.Error;
+import br.com.thalesnishida.user.service.domain.validations.Error;
 
 public class DomainException extends NoStackTraceException {
     

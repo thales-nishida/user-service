@@ -2,9 +2,9 @@ package br.com.thalesnishida.user.service.domain.user;
 
 import java.util.regex.Pattern;
 import java.util.regex.MatchResult;
-import br.com.thalesnishida.validations.Validator;
-import br.com.thalesnishida.validations.Error;
-import br.com.thalesnishida.validations.ValidationHandler;
+import br.com.thalesnishida.user.service.domain.validations.Validator;
+import br.com.thalesnishida.user.service.domain.validations.Error;
+import br.com.thalesnishida.user.service.domain.validations.ValidationHandler;
 
 public class UserValidator extends Validator {
 
