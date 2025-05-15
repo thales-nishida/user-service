@@ -1,4 +1,4 @@
-package br.com.thalesnishida.user.service.user.create;
+package br.com.thalesnishida.user.service.application.user.create;
 
 public record CreateUserCommand (
     String name,

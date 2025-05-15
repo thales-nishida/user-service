@@ -12,7 +12,7 @@ public interface ValidationHandler {
 
     List<Error> getErrors();
 
-    default boolean hasEror() {
+    default boolean hasError() {
         return getErrors() != null && !getErrors().isEmpty();
     }
 

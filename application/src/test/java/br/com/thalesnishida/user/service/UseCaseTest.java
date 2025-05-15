@@ -7,6 +7,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import br.com.thalesnishida.user.service.application.user.create.CreateUserCommand;
+import br.com.thalesnishida.user.service.application.user.create.DefaultCreateUserUseCase;
+import br.com.thalesnishida.user.service.domain.user.UserGateway;
+import java.util.Objects;
 
 import static org.mockito.AdditionalAnswers.returnsFirstArg;
 import static org.mockito.ArgumentMatchers.any;
@@ -29,15 +33,15 @@ public class UseCaseTest {
         final var expectedEmail = "teste@test.com";
         final var expectedPassword = "12C98ssf$";
 
-        final var aCommand = CreateUserCommnad.with(expectedName, expectedEmail, expectedPassword);
+        final var aCommand = CreateUserCommand.with(expectedName, expectedEmail, expectedPassword);
 
-        when(userGateway.create(any)
+        when(userGateway.create(any()))
                 .thenAnswer(returnsFirstArg());
 
-        final var actualCommandOutPut = useCase.execute(aCommand).get();
+        final var actualOutput = useCase.execute(aCommand).get();
 
-        Aseertions.assertNotNull(actualCommandOutPut);
-        Assertions.assertNotNull(actualCommandOutPut.getId());
+        Assertions.assertNotNull(actualOutput);
+        Assertions.assertNotNull(actualOutput.id());
 
         Mockito.verify(userGateway, times(1)).create(argThat(aUser ->
                 Objects.equals(expectedName, aUser.getName())
@@ -48,6 +52,4 @@ public class UseCaseTest {
                     && Objects.nonNull(aUser.getUpdatedAt())
         ));
    }
-
-
 }

@@ -1,4 +1,4 @@
-package br.com.thalesnishida.user.service;
+package br.com.thalesnishida.user.service.application;
 
 public abstract class UseCase<IN, OUT> {
 
