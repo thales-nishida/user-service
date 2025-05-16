@@ -5,6 +5,7 @@
  * For more details on building Java & JVM projects, please refer to https://docs.gradle.org/8.14/userguide/building_java_projects.html in the Gradle documentation.
  */
 
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
@@ -44,4 +45,26 @@ application {
 tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+    testLogging {
+        showStandardStreams = true
+        exceptionFormat = TestExceptionFormat.FULL
+        events("standardOut", "passed", "skipped", "failed")
+        showCauses = true
+        showExceptions = true
+        showStackTraces = true
+    }
+
+    afterSuite(KotlinClosure2<TestDescriptor, TestResult, Unit>({ desc, result ->
+        if (desc.parent == null) { 
+            println("----")
+            println("Test result: ${result.resultType}")
+            println("Test summary: ${result.testCount} tests, " +
+                    "${result.successfulTestCount} succeeded, " +
+                    "${result.failedTestCount} failed, " +
+                    "${result.skippedTestCount} skipped")
+        }
+    }))
 }
+
+tasks.withType<Test> {
+    outputs.upToDateWhen { false } }
