@@ -9,7 +9,6 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import br.com.thalesnishida.user.service.application.user.create.CreateUserCommand;
 import br.com.thalesnishida.user.service.application.user.create.DefaultCreateUserUseCase;
-import br.com.thalesnishida.user.service.domain.exceptions.DomainException;
 import br.com.thalesnishida.user.service.domain.user.UserGateway;
 import java.util.Objects;
 
@@ -70,5 +69,23 @@ public class UseCaseTest {
        Assertions.assertEquals(expectedErrorCount, notification.getErrors().size());
 
        Mockito.verify(userGateway, times(0)).create(any());
+   }
+
+   @Test
+   public void givenAInvalidCommand_whenGatewayThrowsRandomException_thenShouldReturnaADomainException() {
+       final var expectedName = "Test";
+       final var expectedEmail = "test@teste.com";
+       final var expectedPassword = "12#lms#9JJ";
+       final var expectedErrorMessage = "Gateway Error";
+       final var expectedErrorCount = 1;
+
+       final var aCommand = CreateUserCommand.with(expectedName, expectedEmail, expectedPassword);
+
+       when(userGateway.create(any())).thenThrow(new IllegalStateException(expectedErrorMessage));
+
+       final var notification = useCase.execute(aCommand).getLeft();
+
+       Assertions.assertEquals(expectedErrorMessage, notification.firstError().message());
+       Assertions.assertEquals(expectedErrorCount, notification.getErrors().size());
    }
 }
