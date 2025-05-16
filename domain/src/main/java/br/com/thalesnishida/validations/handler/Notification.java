@@ -27,12 +27,14 @@ public class Notification implements ValidationHandler {
     
     @Override
     public Notification append(Error anError) {
-        throw DomainException.with(anError);
+        this.errors.add(anError);
+        return this;
     }
 
     @Override
     public Notification append(ValidationHandler anHandler) {
-        throw DomainException.with(anHandler.getErrors());
+        this.errors.addAll(anHandler.getErrors());
+        return this;
     }
 
     @Override 
@@ -40,7 +42,7 @@ public class Notification implements ValidationHandler {
         try {
             aValidation.validate();
         } catch (final DomainException ex) {
-            throw DomainException.with(new Error(ex.getMessage()));
+            this.errors.addAll(ex.getErrors());
         } catch(final Throwable t) {
             this.errors.add(new Error(t.getMessage()));
         }
