@@ -24,6 +24,10 @@ public class UserId extends Identifier {
     public static UserId from(final UUID anId) {
         return new UserId(anId.toString().toLowerCase());
     }
+
+    public String getValue() {
+        return this.value;
+    }
     
     @Override
     public boolean equals(Object o) {
