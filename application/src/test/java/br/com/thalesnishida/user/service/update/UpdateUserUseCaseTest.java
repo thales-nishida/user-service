@@ -3,6 +3,7 @@ package br.com.thalesnishida.user.service.update;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.BeforeEach;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -20,6 +21,7 @@ import static org.mockito.AdditionalAnswers.returnsFirstArg;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.argThat;
+import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 
@@ -30,6 +32,11 @@ public class UpdateUserUseCaseTest {
 
     @Mock
     private UserGateway userGateway;
+
+    @BeforeEach
+    void cleanUp() {
+        Mockito.reset(userGateway);
+    }
 
     @Test 
     public void givenAValidParams_whenCallUpdateUserCommand_thenShouldReturnUserUpdated() {
