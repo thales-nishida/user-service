@@ -4,8 +4,10 @@ import br.com.thalesnishida.user.service.domain.AggregateRoot;
 import br.com.thalesnishida.user.service.domain.validations.ValidationHandler;
 
 import java.time.Instant;
+import java.lang.Cloneable;
+import java.lang.CloneNotSupportedException;
 
-public class User extends AggregateRoot<UserId> {
+public class User extends AggregateRoot<UserId> implements Cloneable {
     private String name;
     private String email;
     private String password;
@@ -78,5 +80,15 @@ public class User extends AggregateRoot<UserId> {
     public void validate(final ValidationHandler handler) {
         new UserValidator(this, handler).validate();
     } 
+
+    @Override
+    public User clone() {
+        try {
+            User clone = (User) super.clone();
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
 }
 
