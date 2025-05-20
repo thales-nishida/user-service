@@ -3,15 +3,17 @@ package br.com.thalesnishida.user.service.application.delete;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.extention.ExtendWith;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import br.com.thalesnishida.user.service.application.user.delete.DefaultDeleteUserUseCase;
 import br.com.thalesnishida.user.service.domain.user.UserGateway;
 import br.com.thalesnishida.user.service.domain.user.User;
 import br.com.thalesnishida.user.service.domain.user.UserId;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.reset;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.doNothing;
@@ -19,7 +21,7 @@ import static org.mockito.Mockito.doThrow;
 
 
 @ExtendWith(MockitoExtension.class)
-public class void DeleteUserUseCaseTest {
+public class DeleteUserUseCaseTest {
 
     @InjectMocks
     private DefaultDeleteUserUseCase useCase;
@@ -29,7 +31,7 @@ public class void DeleteUserUseCaseTest {
     
     @BeforeEach
     void cleanUp() {
-        Mockito.reset(userGateway)
+        reset(userGateway);
     }
 
     @Test
@@ -42,7 +44,7 @@ public class void DeleteUserUseCaseTest {
 
         Assertions.assertDoesNotThrow(() -> useCase.execute(expectedId.getValue()));
 
-        Mockito.verify(userGateway, times(1)).deleteById(eq(expectedId));
+        verify(userGateway, times(1)).deleteById(eq(expectedId));
     }
 
     @Test
@@ -54,7 +56,7 @@ public class void DeleteUserUseCaseTest {
 
         Assertions.assertDoesNotThrow(() -> useCase.execute(expectedId.getValue()));
 
-        Mockito.verify(userGateway, times(1)).deleteById(eq(expectedId));
+        verify(userGateway, times(1)).deleteById(eq(expectedId));
     }
 
     @Test
@@ -62,12 +64,12 @@ public class void DeleteUserUseCaseTest {
         final var aUser = User.newUser("test", "test@test.com", "tes@tT232#");
         final var expectedId = aUser.getId();
 
-        doThrow(new IllegalException("Gateway error"))
+        doThrow(new IllegalStateException("Gateway error"))
             .when(userGateway).deleteById(eq(expectedId));
 
-        Assetions.assertThrows(IllegalException.class, () -> useCase.execute(expectedId.getValue()));
+        Assertions.assertThrows(IllegalStateException.class, () -> useCase.execute(expectedId.getValue()));
 
-        Mockito.verify(userGateway, times(1)).deleteById(eq(expectedId));
+        verify(userGateway, times(1)).deleteById(eq(expectedId));
     }
 }
 
