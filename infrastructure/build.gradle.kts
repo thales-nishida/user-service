@@ -14,6 +14,10 @@ plugins {
     java
 }
 
+application {
+    mainClass.set("br.com.thalesnishida.user.service.infrastructure.Main")
+}
+
 group = "br.com.thalesnishida.user.service.infrastructure"
 version = "1.0-SNAPSHOT"
 
