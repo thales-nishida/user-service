@@ -1,5 +1,3 @@
-version: '3.7'
-
 services:
   mysql:
     container_name: use_service_myslq
@@ -15,4 +13,6 @@ services:
       - user_services_network
 
 networks:
-  user_services_network
+  user_services_network:  
+    driver: bridge
+

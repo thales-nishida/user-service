@@ -31,7 +31,8 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":application"))
     implementation(libs.guava)
-
+    implementation("mysql:mysql-connector-java:8.0.33")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa:3.5.0")
     implementation("org.springframework.boot:spring-boot-starter-web") {
         exclude(group = "org.springframework.boot", module = "spring-boot-starter-tomcat")
     }
@@ -39,6 +40,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-undertow")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    runtimeOnly("com.h2database:h2:2.2.224")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
