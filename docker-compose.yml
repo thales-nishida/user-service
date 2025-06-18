@@ -15,4 +15,4 @@ services:
       - user_services_network
 
 networks:
-  user_services_network
+  user_services_network:
